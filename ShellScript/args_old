@@ -1,0 +1,4 @@
+#! /bin/bash
+echo this args command has $# arguments. 
+# $# stores number of positional arguments
+echo They are $*
