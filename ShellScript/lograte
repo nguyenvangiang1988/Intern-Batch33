@@ -1,5 +1,5 @@
 #! /bin/bash
-
+#! /bin/sh
 if [ $# -eq 0 ]; then
 	echo Missing argument.
 	exit
