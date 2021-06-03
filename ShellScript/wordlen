@@ -1,0 +1,16 @@
+#! /bin/bash
+#! /bin/sh
+ 
+input=""
+if [ $# -ne 0 ]; then
+	input=$1
+else
+	read -p "Enter a word: " input
+fi
+
+len=$(echo $input | wc -m)
+len=$((len-1))
+echo Length of input word is: $len
+
+#Alternative solution
+#echo ${#input}
