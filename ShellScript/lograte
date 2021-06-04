@@ -1,0 +1,23 @@
+#! /bin/bash
+#! /bin/sh
+if [ $# -eq 0 ]; then
+	echo Missing argument.
+	exit
+fi
+
+#username mode
+if [ $1 = "-u" ]; then
+	username=$2
+	 rate=$(last | grep $username | wc -l)
+	echo $username has logged on $rate times.
+	exit
+fi
+
+#uid mode
+username=""
+if [ $1 != "-i" ]; then 
+	username=$(id -u -n $1)
+else username=$(id -u -n $2)
+fi
+rate=$(last | grep $username | wc -l)
+echo $username has logged on $rate times. 

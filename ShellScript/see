@@ -1,0 +1,18 @@
+#! /bin/bash
+#! /bin/sh
+
+input=""
+if [ $# -ne 0 ]; then 
+	input=$1
+else
+	read -p "Enter a filename: " input
+fi
+
+if [ -d $input ]; then 
+	echo $input is a directory, execute ls.
+	ls $input
+else 
+	echo $input is a file, execute more.
+	more $input
+fi
+ 	 
