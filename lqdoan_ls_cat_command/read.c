@@ -36,5 +36,6 @@ int printFile(char *path) {
   }
   char c;
   while ((c = fgetc(file)) != EOF) printf("%c", c);
+  fclose(file);
   return 0;
 }

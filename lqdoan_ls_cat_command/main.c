@@ -11,13 +11,16 @@ int main() {
     running = readCommand(args, &argv);
 
     int status;
-    if (!running) return 0;
+    if (!running) break;
     /*
     for (int i = 0; i < argv; ++i)
             printf("input: %s \n", args[i]);
     */
     if (argv > 0) status = processCommand(args, &argv);
     if (status == 1) printf("Command error.\n");
+    for (int i = 0; i < argv; i += 1)
+  	free((char*) args[i]);
   }
+
   return 0;
 }

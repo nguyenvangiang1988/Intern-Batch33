@@ -5,7 +5,7 @@ void displaylong(char *path) {
   struct stat att;
   struct passwd *usr;
   struct group *grp;
-  char *line = strdup("\0");
+  char line[1000] = "\0";
 
   stat(path, &att);
   usr = getpwuid(att.st_uid);
@@ -68,15 +68,18 @@ int listDir(char *path, int all, int longlist) {
   while ((ent = readdir(dir)) != NULL) {
     if ((*ent).d_name[0] == '.' && !all) continue;
     if (longlist == 1) {
-      char *filepath = strdup(path);
+      char filepath[255] = "\0";
+      strcat(filepath, path);
       strcat(filepath, "/");
       strcat(filepath, (*ent).d_name);
       // printf("%s\n",filepath);
       displaylong(filepath);
+      //free((char*)filepath);
     }
     printf("%s\n", (*ent).d_name);
   }
   closedir(dir);
+
   return 0;
 }
 
@@ -84,7 +87,7 @@ int processCommand(char *args[], int *argv) {
   int status = 1;
   if (strcmp(args[0], "ls") == 0) {
     int a = 0, l = 0, opt;
-    char *path = ".";
+    char *path = ".\0";
     while ((opt = getopt(*argv, args, "al")) != -1) switch (opt) {
         case 'a':
           a = 1;
